@@ -6,24 +6,24 @@ InitPlayer:
 	ld [hl], $20
 
 	; set render info
-	ld hl, wOAMBuffer+$2
+	ld hl, wSprite0+2
 	ld [hl], SL0
-	ld hl, wOAMBuffer+$3
+	ld hl, wSprite0+3
 	ld [hl], $0
 
-	ld hl, wOAMBuffer+$6
+	ld hl, wSprite1+2
 	ld [hl], SL0+1
-	ld hl, wOAMBuffer+$7
+	ld hl, wSprite1+3
 	ld [hl], $0
 
-	ld hl, wOAMBuffer+$A
+	ld hl, wSprite2+2
 	ld [hl], SL1
-	ld hl, wOAMBuffer+$B
+	ld hl, wSprite2+3
 	ld [hl], $0
 
-	ld hl, wOAMBuffer+$E
+	ld hl, wSprite3+2
 	ld [hl], SL1+1
-	ld hl, wOAMBuffer+$F
+	ld hl, wSprite3+3
 	ld [hl], $0
 
 	ret
@@ -42,24 +42,24 @@ DrawPlayer:
 	add $8
 
 	; set coords
-	ld hl, wOAMBuffer
+	ld hl, wSprite0
 	ld [hl], b
-	ld hl, wOAMBuffer+1
+	ld hl, wSprite0+1
 	ld [hl], d
 	
-	ld hl, wOAMBuffer+4
+	ld hl, wSprite1
 	ld [hl], b
-	ld hl, wOAMBuffer+5
+	ld hl, wSprite1+1
 	ld [hl], c
 
-	ld hl, wOAMBuffer+8
+	ld hl, wSprite2
 	ld [hl], a
-	ld hl, wOAMBuffer+9
+	ld hl, wSprite2+1
 	ld [hl], d
 
-	ld hl, wOAMBuffer+$C
+	ld hl, wSprite3
 	ld [hl], a
-	ld hl, wOAMBuffer+$D
+	ld hl, wSprite3+1
 	ld [hl], c
 
 	ret
@@ -74,29 +74,30 @@ UpdatePlayer:
 
 	bit 0, a
 	jp nz, SkipRight
-	ld hl, $C001
+	ld hl, wPlayerX
 	inc [hl]
 	inc [hl]
 SkipRight:
 
 	bit 1, a
 	jp nz, SkipLeft
-	ld hl, $C001
+	ld hl, wPlayerX
 	dec [hl]
 	dec [hl]
 SkipLeft:
 
 	bit 2, a
 	jp nz, SkipUp
-	ld hl, $C000
+	ld hl, wPlayerY
 	dec [hl]
 	dec [hl]
 SkipUp:
 
 	bit 3, a
 	jp nz, SkipDown
-	ld hl, $C000
+	ld hl, wPlayerY
 	inc [hl]
 	inc [hl]
 SkipDown:
+
     ret

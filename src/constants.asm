@@ -1,8 +1,25 @@
+; functions
 DMARoutineHRAM EQU $FF80
-wOAMBuffer EQU $CF00
 
-wPlayerY   EQU $C000
-wPlayerX   EQU $C001
+; variables
+wPlayerX   EQU $C000
+wPlayerY   EQU $C001
+wFireballX EQU $C002
+wFireballY EQU $C003
+
+; OAM
+wOAMBuffer EQU $CF00
+wSprite0   EQU wOAMBuffer
+wSprite1   EQU wOAMBuffer+4
+wSprite2   EQU wOAMBuffer+8
+wSprite3   EQU wOAMBuffer+12
+wSprite4   EQU wOAMBuffer+16
+wSprite5   EQU wOAMBuffer+20
+wSprite6   EQU wOAMBuffer+24
+wSprite7   EQU wOAMBuffer+28
+wSprite8   EQU wOAMBuffer+32
+wSprite9   EQU wOAMBuffer+36
+wSprite10  EQU wOAMBuffer+40
 
 ; Spritesheet tile lines
 SL0 EQU 0
@@ -32,6 +49,7 @@ TorielL11 EQU TorielL0+99
 TorielL12 EQU TorielL0+108
 TorielL13 EQU TorielL0+117
 
+; Background map lines
 BackgroundL0  EQU $9800
 BackgroundL1  EQU BackgroundL0+32
 BackgroundL2  EQU BackgroundL0+64
@@ -46,3 +64,4 @@ BackgroundL10 EQU BackgroundL0+320
 BackgroundL11 EQU BackgroundL0+352
 BackgroundL12 EQU BackgroundL0+384
 BackgroundL13 EQU BackgroundL0+416
+
