@@ -5,7 +5,7 @@ Init:
 	ld [$FF00+$FF], a
 
 	; load tiles into ram
-	ld de, $4000
+	ld de, GraphicsBinary
 	ld hl, $8000
 	ld bc, $0C00
 LoadGraphics:

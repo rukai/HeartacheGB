@@ -1,9 +1,13 @@
 InitPlayer:
 	; set x/y
-	ld hl, wPlayerY
-	ld [hl], $30
-	ld hl, wPlayerX
-	ld [hl], $20
+    ld hl, wEntity0
+    ld [hl], $30
+	inc hl
+    ld [hl], $20
+	inc hl
+    ld [hl], 1
+	inc hl
+    ld [hl], 0
 
 	; set render info
 	ld hl, wSprite0+2
@@ -25,42 +29,6 @@ InitPlayer:
 	ld [hl], SL1+1
 	ld hl, wSprite3+3
 	ld [hl], $0
-
-	ret
-
-DrawPlayer:
-	; get coords
-	ld hl, wPlayerX
-	ld a, [hl]
-	ld d, a    ; x 
-	add $8
-	ld c, a    ; x offset
-
-	ld hl, wPlayerY
-	ld a, [hl]  ; y offset
-	ld b, a     ; y
-	add $8
-
-	; set coords
-	ld hl, wSprite0
-	ld [hl], b
-	ld hl, wSprite0+1
-	ld [hl], d
-	
-	ld hl, wSprite1
-	ld [hl], b
-	ld hl, wSprite1+1
-	ld [hl], c
-
-	ld hl, wSprite2
-	ld [hl], a
-	ld hl, wSprite2+1
-	ld [hl], d
-
-	ld hl, wSprite3
-	ld [hl], a
-	ld hl, wSprite3+1
-	ld [hl], c
 
 	ret
 

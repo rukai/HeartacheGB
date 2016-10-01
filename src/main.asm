@@ -136,7 +136,6 @@ JOYPAD_VECT:
 	; $014E-$014F (Cartridge checksum - handled by RGBFIX)
 	DW	$00
 
-
 ;*****************************************
 ;*	Program Start
 ;*****************************************
@@ -146,27 +145,31 @@ Start:
 	call WriteDMACodeToHRAM
 	call Init
 	call InitBackground
-	call InitPlayer
-	call InitFireball
+	call InitFireballs
+	call InitMenu
 
 Loop:
-	call UpdatePlayer
-	call UpdateFireball
+	call UpdateBattleState
 
 	halt
 
-	call DrawPlayer
-	call DrawFireball
+	call DrawEntities
 
 	call DMARoutineHRAM
 
 	jp Loop
-	
+
 	INCLUDE "src/oam_dma.asm"
 	INCLUDE "src/init.asm"
+	INCLUDE "src/entity.asm"
 	INCLUDE "src/background.asm"
 	INCLUDE "src/player.asm"
 	INCLUDE "src/fireball.asm"
+	INCLUDE "src/battleState.asm"
+
 	SECTION "BANK1",ROMX,BANK[$1]
+SinTable:
+	INCBIN  "bin/sinTable.bin";
+GraphicsBinary:
 	INCBIN  "graphics/tiles.chr"
 	INCBIN  "graphics/toriel.chr"
