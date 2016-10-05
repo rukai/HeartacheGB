@@ -7,7 +7,6 @@ image = Image.open("toriel.png")
 image.load()
 output = array('B')
 
-# Input image is one long horizontal strip
 for vert_tile in range(image.height // 8):
     for hor_tile in range(image.width // 8):
         for vert_line in range(8):

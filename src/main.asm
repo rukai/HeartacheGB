@@ -144,11 +144,11 @@ JOYPAD_VECT:
 Start:
 	call WriteDMACodeToHRAM
 	call Init
-	call InitBackground
 	call InitFireballs
 	call InitMenu
 
 Loop:
+	call UpdateJoypad
 	call UpdateBattleState
 
 	halt
@@ -166,6 +166,7 @@ Loop:
 	INCLUDE "src/player.asm"
 	INCLUDE "src/fireball.asm"
 	INCLUDE "src/battleState.asm"
+	INCLUDE "src/joypad.asm"
 
 	SECTION "BANK1",ROMX,BANK[$1]
 SinTable:

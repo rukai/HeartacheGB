@@ -2,9 +2,16 @@
 DMARoutineHRAM EQU $FF80
 
 ; variables
-wMenuSelection EQU $C000 ; 0 - 3
+wMenuSelection EQU $C000 ; 0 - 2
 wBattleState   EQU $C001
 wBattleCounter EQU $C002
+
+; joypad
+wJoypadDirHold   EQU $C010
+wJoypadDirPress  EQU $C011
+wJoypadRightPress EQU $C012
+wJoypadRightHold  EQU $C013
+
 ; 0 - menu
 ; 1 - attack one
 ; 2 - attack two
@@ -32,8 +39,6 @@ wEntity9         EQU $C190
 ;   +   2 - Sine Fireball
 ; * timer
 ; * 12 bytes of padding to keep inline with OAM
-wPlayerX       EQU $C100
-wPlayerY       EQU $C101
 
 ; OAM
 wOAMBufferMSB EQU $CF
@@ -60,19 +65,19 @@ wSprite18     EQU wOAMBuffer+72
 wSprite19     EQU wOAMBuffer+76
 
 ; Spritesheet tile lines
-SL0 EQU 0
-SL1 EQU SL0+4
-SL2 EQU SL0+8
-SL3 EQU SL0+12
-SL4 EQU SL0+16
-SL5 EQU SL0+20
-SL6 EQU SL0+24
-SL7 EQU SL0+28
-SL8 EQU SL0+32
-SL9 EQU SL0+36
+SL0   EQU 0
+SL1   EQU SL0+8
+SL2   EQU SL0+16
+SL3   EQU SL0+24
+SL4   EQU SL0+32
+SL5   EQU SL0+40
+SL6   EQU SL0+48
+SL7   EQU SL0+56
+SL8   EQU SL0+64
+SLEnd EQU SL0+72
 
 ; Toriel tile lines
-TorielL0  EQU 40
+TorielL0  EQU SLEnd
 TorielL1  EQU TorielL0+9
 TorielL2  EQU TorielL0+18
 TorielL3  EQU TorielL0+27
@@ -102,3 +107,6 @@ BackgroundL10 EQU BackgroundL0+320
 BackgroundL11 EQU BackgroundL0+352
 BackgroundL12 EQU BackgroundL0+384
 BackgroundL13 EQU BackgroundL0+416
+BackgroundL14 EQU BackgroundL0+448
+BackgroundL15 EQU BackgroundL0+480
+BackgroundL16 EQU BackgroundL0+512

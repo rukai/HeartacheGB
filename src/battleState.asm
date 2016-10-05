@@ -5,14 +5,26 @@ contInitMenu:
     ld [hl], 0
     dec hl
     dec de
-    jp nz, contInitMenu
+    jr nz, contInitMenu
 
-    ; TODO after selection made, call a random InitAttack
-    call InitAttack1
+    ld hl, wBattleState
+    ld [hl], 0
+
+    ld hl, wMenuSelection
+    ld [hl], 0
+
+    call DrawBackground
+    call DrawFightSelect
+    call DrawItem
+    call DrawMercy
 
     ret
 
 InitAttack1:
+    ld hl, wBattleState
+    ld [hl], 1
+
+    call DrawBackground
     call InitPlayer
 
     ld hl, wEntity1
@@ -50,10 +62,13 @@ InitAttack1:
     ld [hl], 2
     inc hl
     ld [hl], 32
-    ; TODO: manually setup a bunch of fireballs
+
     ret
 
 InitAttack2:
+    ld hl, wBattleState
+    ld [hl], 2
+
     ret
 
 UpdateBattleState:
@@ -61,6 +76,8 @@ UpdateBattleState:
 
     ld a, [wBattleState]
     ; TODO: use wBattleState to choose correct battle state handler
+    cp a, 0
+    call z, UpdateMenu
     cp a, 1
     call z, UpdateAttack1
     cp a, 2
@@ -71,16 +88,64 @@ UpdateBattleState:
     ret
 
 UpdateMenu:
-    ; TODO: Alter selection
-    ; TODO: *   Change palette of selection, revealing box
-    ; TODO: *   Move player inside box of selection
+    ; get selection
+    ld de, wMenuSelection
+    ld a, [de]
+
+    ; change selection
+    ld hl, wJoypadDirPress
+    bit 1, [hl]
+    jr nz, noLeft
+
+    call DrawMenu
+    dec a ; TODO wrap
+    call DrawMenuSelect
+noLeft:
+
+    ld hl, wJoypadDirPress
+    bit 0, [hl]
+    jr nz, noRight
+
+    call DrawMenu
+    inc a ; TODO wrap
+    call DrawMenuSelect
+noRight:
+
+    ; set selection
+    ld [de], a
+
+    ; make selection
+    ld hl, $FF00
+    set 4, [hl]
+    res 5, [hl]
+    bit 0, [hl]
+    ret nz
+
+    ld a, [wMenuSelection]
+    cp 0
+    call z, InitFight
+    cp 1
+    call z, InitItem
+    cp 2
+    call z, InitSpare
+
+    ; TODO: Call random init attack
+    call InitAttack1
+
+    ret
+
+InitFight:
+    ret
+InitItem:
+    ret
+InitSpare:
     ret
 
 UpdateAttack1:
     ; TODO: draw all fireballs
 
     ; TODO: add some more fireballs at certain points in the counter
-    ; TODO after x ticks call InitMenu
+    ; TODO: after x ticks call InitMenu
     ret
 
 UpdateAttack2:

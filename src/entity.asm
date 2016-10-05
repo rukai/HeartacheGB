@@ -21,7 +21,7 @@ DrawEntities
 	call DrawEntity
 	ret
 
-; takes register l as parameter for fireball
+; takes register l as parameter for entity
 ; because LSB x/y are same on both wOAMBuffer and wEntity we can do some fancy stuff
 DrawEntity:
 	; get x/y
