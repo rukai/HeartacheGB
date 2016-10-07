@@ -5,12 +5,13 @@ DMARoutineHRAM EQU $FF80
 wMenuSelection EQU $C000 ; 0 - 2
 wBattleState   EQU $C001
 wBattleCounter EQU $C002
+wBattleStage   EQU $C003
+wPlayerHealth  EQU $C004
+wTorielHealth  EQU $C005
 
 ; joypad
 wJoypadDirHold   EQU $C010
 wJoypadDirPress  EQU $C011
-wJoypadRightPress EQU $C012
-wJoypadRightHold  EQU $C013
 
 ; 0 - menu
 ; 1 - attack one

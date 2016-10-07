@@ -76,11 +76,11 @@ UpdateBattleState:
 
     ld a, [wBattleState]
     ; TODO: use wBattleState to choose correct battle state handler
-    cp a, 0
+    cp 0
     call z, UpdateMenu
-    cp a, 1
+    cp 1
     call z, UpdateAttack1
-    cp a, 2
+    cp 2
     call z, UpdateAttack2
 
     ld hl, wBattleCounter
@@ -98,7 +98,13 @@ UpdateMenu:
     jr nz, noLeft
 
     call DrawMenu
-    dec a ; TODO wrap
+
+    dec a
+    cp -1
+    jr nz, noWrapLeft
+    ld a, 2
+noWrapLeft:
+
     call DrawMenuSelect
 noLeft:
 
@@ -107,7 +113,13 @@ noLeft:
     jr nz, noRight
 
     call DrawMenu
-    inc a ; TODO wrap
+
+    inc a
+    cp 3
+    jr c, noWrapRight
+    ld a, 0
+noWrapRight:
+
     call DrawMenuSelect
 noRight:
 
@@ -135,10 +147,25 @@ noRight:
     ret
 
 InitFight:
+    ld hl, wTorielHealth
+    ld a, [hl]
+    sub 3
+    ld [hl], a
+
     ret
+
 InitItem:
     ret
+    ld hl, wPlayerHealth
+    ld a, [hl]
+    add 3
+
+    ld [hl], a
+
 InitSpare:
+    ld hl, wBattleStage
+    inc [hl]
+
     ret
 
 UpdateAttack1:
@@ -146,6 +173,10 @@ UpdateAttack1:
 
     ; TODO: add some more fireballs at certain points in the counter
     ; TODO: after x ticks call InitMenu
+    ld hl, wBattleCounter
+    cp 10
+    call z, InitMenu
+
     ret
 
 UpdateAttack2:
