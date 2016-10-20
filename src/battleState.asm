@@ -1,11 +1,33 @@
+InitBattle
+    ld hl, wBattleStage
+    ld [hl], 10
+
+    ld hl, wTorielHealth
+    ld [hl], 10
+
+    ld hl, wPlayerHealth
+    ld [hl], 10
+
+    call DrawBackground
+    call InitMenu
+
+    ret
+
 InitMenu:
+    ; zero out entity data
     ld hl, wEntityStates
-    ld de, wEntityStates - wEntityStatesEnd
+    ld de, wEntityStatesEnd - wEntityStates
 contInitMenu:
     ld [hl], 0
-    dec hl
+    inc hl
     dec de
+    ld a, e
+    and a
     jr nz, contInitMenu
+
+    ; init battle variables
+    ld hl, wBattleStateCounter
+    ld [hl], 0
 
     ld hl, wBattleState
     ld [hl], 0
@@ -13,7 +35,7 @@ contInitMenu:
     ld hl, wMenuSelection
     ld [hl], 0
 
-    call DrawBackground
+    ; TODO: these should probably be changed with the menu rendering rewrite
     call DrawFightSelect
     call DrawItem
     call DrawMercy
@@ -21,10 +43,12 @@ contInitMenu:
     ret
 
 InitAttack1:
+    ld hl, wBattleStateCounter
+    ld [hl], 0
+
     ld hl, wBattleState
     ld [hl], 1
 
-    call DrawBackground
     call InitPlayer
 
     ld hl, wEntity1
@@ -69,6 +93,9 @@ InitAttack2:
     ld hl, wBattleState
     ld [hl], 2
 
+    ld hl, wBattleStateCounter
+    ld [hl], 0
+
     ret
 
 UpdateBattleState:
@@ -83,7 +110,7 @@ UpdateBattleState:
     cp 2
     call z, UpdateAttack2
 
-    ld hl, wBattleCounter
+    ld hl, wBattleStateCounter
     inc [hl]
     ret
 
@@ -173,7 +200,8 @@ UpdateAttack1:
 
     ; TODO: add some more fireballs at certain points in the counter
     ; TODO: after x ticks call InitMenu
-    ld hl, wBattleCounter
+    ld hl, wBattleStateCounter
+    ld a, l
     cp 10
     call z, InitMenu
 

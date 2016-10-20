@@ -3,9 +3,9 @@ DMARoutineHRAM EQU $FF80
 
 ; variables
 wMenuSelection EQU $C000 ; 0 - 2
-wBattleState   EQU $C001
-wBattleCounter EQU $C002
-wBattleStage   EQU $C003
+wBattleState   EQU $C001 ; attack, menu, item etc
+wBattleStateCounter EQU $C002 ; number of ticks current wBattleState has run for
+wBattleStage   EQU $C003 ; progress in the battle
 wPlayerHealth  EQU $C004
 wTorielHealth  EQU $C005
 

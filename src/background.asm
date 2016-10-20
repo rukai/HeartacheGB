@@ -1,17 +1,18 @@
 DrawBackground:
 	; set background tile indexes
+    ; TODO: Both the blanking code and the toriel code is missing tiles leaving 0 tiles everywhere o.0
 	ld hl, $9800
 	ld de, $400
 repeatTile:
-	ld [hl], TorielL0
+	ld [hl], TorielL0 ; BGB sees this called but it has no effect o.0
 	inc hl
 	dec de
 	ld a, d
 	and d
-	jp nz, repeatTile
+	jr nz, repeatTile
 	ld a, e
 	and e
-	jp nz, repeatTile
+	jr nz, repeatTile
 
     ; draw toriel
 	ld hl, BackgroundL0
@@ -284,6 +285,7 @@ repeatTile:
 
 ; takes a as parameter
 DrawMenu:
+	ret; TODO This should be moved to a window toggle, some sprites or other hack
 	cp 0
 	call z, DrawFight
 	cp 1
@@ -295,6 +297,7 @@ DrawMenu:
 
 ; takes a as parameter
 DrawMenuSelect:
+	ret; TODO This should be moved to a window toggle, some sprites or other hack
 	cp 0
 	call z, DrawFightSelect
 	cp 1

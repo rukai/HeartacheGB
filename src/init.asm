@@ -1,8 +1,12 @@
 Init:
-	; setup interrupts
-	ei
-	ld a, $1
-	ld [$FF00+$FF], a
+	di
+	; disable LCD
+wait:
+	ld a, [$FF00+$44]
+	cp $90
+	jr nz, wait
+	xor a
+	ld [$FF00+$40], a
 
 	; load tiles into ram
 	ld de, GraphicsBinary
@@ -32,8 +36,16 @@ LoadGraphics:
 	ld a, -$2C
 	ld [$FF00+$43], a
 
-	; enable sprites
+    ret
+
+InitFinalize:
+	; enable display w\ sprites
 	ld a, $93; 0b10010011
 	ld [$FF00+$40], a
 
-    ret
+	; setup interrupts
+	ei
+	ld a, $1
+	ld [$FF00+$FF], a
+
+	ret

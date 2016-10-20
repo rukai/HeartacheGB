@@ -22,3 +22,9 @@ UpdateJoypad:
     ld [hl], a
 
     ret
+
+InitJoypad:
+
+    ld hl, wJoypadDirHold
+    ld [hl], 0
+    ret

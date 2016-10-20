@@ -2,7 +2,16 @@ InitFireballs:
 	; TODO: this code should be moved into something called by an entity draw call
     ; set render info
 
-	; sprite 1
+	; Zero out all sprite values to ensure that no unused sprites are displayed as garbage
+	ld hl, wOAMBuffer
+	ld a, $a0
+repeat:
+	ld [hl], 0
+	inc hl
+	dec a
+	jp nz, repeat
+
+	; fireball 1
 	ld hl, wSprite4+2
 	ld [hl], SL0+2
 	ld hl, wSprite4+3
@@ -23,7 +32,7 @@ InitFireballs:
 	ld hl, wSprite7+3
 	ld [hl], $0
 
-	; sprite 2
+	; fireball 2
 	ld hl, wSprite8+2
 	ld [hl], SL0+2
 	ld hl, wSprite8+3
@@ -44,7 +53,7 @@ InitFireballs:
 	ld hl, wSprite11+3
 	ld [hl], $0
 
-	; sprite 3
+	; fireball 3
 	ld hl, wSprite12+2
 	ld [hl], SL0+2
 	ld hl, wSprite12+3
@@ -65,7 +74,7 @@ InitFireballs:
 	ld hl, wSprite15+3
 	ld [hl], $0
 
-	; sprite4
+	; fireball 4
 	ld hl, wSprite16+2
 	ld [hl], SL0+2
 	ld hl, wSprite16+3

@@ -145,7 +145,9 @@ Start:
 	call WriteDMACodeToHRAM
 	call Init
 	call InitFireballs
-	call InitMenu
+	call InitBattle
+	call InitFinalize
+	call InitJoypad
 
 Loop:
 	call UpdateJoypad
