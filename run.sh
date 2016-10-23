@@ -1,3 +1,3 @@
 #!/bin/sh
 ./compile.sh
-mednafen rom.gb > /dev/null
+mednafen heartache.gb > /dev/null
