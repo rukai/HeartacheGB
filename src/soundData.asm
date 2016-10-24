@@ -11,20 +11,56 @@
 
 SECTION "Sound",DATA[$5000],BANK[$1]
 Channel2Table:
-    db $00
+    db $00 ; D#6
     db $F1
-    db $00
-    db $81
-    db $13
+    db $2D
+    db $87
+    db $09
     db $00
     db $00
     db $00
 
-    db $00
+    db $00 ; C7
     db $F1
-    db $F0
-    db $81
-    db $08
+    db $83
+    db $87
+    db $09
+    db $00
+    db $00
+    db $00
+
+    db $00 ; A#6
+    db $F1
+    db $73
+    db $87
+    db $09
+    db $00
+    db $00
+    db $00
+
+    db $00 ; G#6
+    db $F1
+    db $62
+    db $87
+    db $09
+    db $00
+    db $00
+    db $00
+
+    db $00 ; F#6
+    db $F1
+    db $4F
+    db $87
+    db $09
+    db $00
+    db $00
+    db $00
+
+    db $00 ; G#6
+    db $F1
+    db $62
+    db $87
+    db $09
     db $00
     db $00
     db $00

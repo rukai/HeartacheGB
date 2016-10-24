@@ -62,7 +62,7 @@ playChan2:
 
     ; loop song early
     ld a, e
-    cp $10
+    cp $30
     jp nz, saveProgress
     ld e, 0
 
