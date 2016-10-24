@@ -14,9 +14,8 @@ wJoypadDirHold   EQU $C010
 wJoypadDirPress  EQU $C011
 
 ; music
-wMusicChan2Lo    EQU $C012
-wMusicChan2Hi    EQU $C013
-wMusicChan2Delay EQU $C014
+wMusicChan2      EQU $C012
+wMusicChan2Delay EQU $C013
 
 ; 0 - menu
 ; 1 - attack one

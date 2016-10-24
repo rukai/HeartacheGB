@@ -6,19 +6,14 @@ InitSound:
 	ld a, $77 ; 0b01110111
 	ld [$FF00+$24], a
 
-    ld a, $2  ; 0b00000010
+    ld a, $FF  ; 0b00000010
     ld [$FF00+$25], a
 
     ; set sound variables
-    ld e, Channel2Table / $FF
-    ld d, Channel2Table & $FF
+    ld hl, wMusicChan2
+    ld [hl], 0
 
-    ld hl, wMusicChan2Lo
-    ld [hl], e
     inc hl
-    ld [hl], d
-    inc hl
-
     ld [hl], 0
 
     ret
@@ -33,27 +28,47 @@ Sound:
     ret
 
 playChan2:
-    ld hl, Channel2Table
+    ld d, Channel2Table / $FF
+    ; load table progress
+    ld hl, wMusicChan2
+    ld e, [hl]
 
-    ld a, [hl]
+    ; play entry
+    ld a, [de]
     ld [$FF00+$16], a
-    inc hl
+    inc e
 
-    ld a, [hl]
+    ld a, [de]
     ld [$FF00+$17], a
-    inc hl
+    inc e
 
-    ld a, [hl]
+    ld a, [de]
     ld [$FF00+$18], a
-    inc hl
+    inc e
 
-    ld a, [hl]
+    ld a, [de]
     ld [$FF00+$19], a
-    inc hl
+    inc e
 
-    ld a, [hl]
-    ld de, wMusicChan2Delay
-    ld [de], a
-    inc hl
+    ld a, [de]
+    ld hl, wMusicChan2Delay
+    ld [hl], a
+    inc e
+
+    ; ayyy lmao
+    inc e
+    inc e
+    inc e
+
+    ; loop song early
+    ld a, e
+    cp $10
+    jp nz, saveProgress
+    ld e, 0
+
+    ; save table progress
+saveProgress:
+    ld hl, wMusicChan2
+    ld [hl], e
 
     ret
