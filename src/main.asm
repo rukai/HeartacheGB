@@ -148,10 +148,12 @@ Start:
 	call InitBattle
 	call InitFinalize
 	call InitJoypad
+	call InitSound
 
 Loop:
 	call UpdateJoypad
 	call UpdateBattleState
+	call Sound
 
 	halt
 
@@ -169,6 +171,7 @@ Loop:
 	INCLUDE "src/fireball.asm"
 	INCLUDE "src/battleState.asm"
 	INCLUDE "src/joypad.asm"
+	INCLUDE "src/sound.asm"
 
 	SECTION "BANK1",ROMX,BANK[$1]
 SinTable:
@@ -176,3 +179,4 @@ SinTable:
 GraphicsBinary:
 	INCBIN  "graphics/tiles.chr"
 	INCBIN  "graphics/toriel.chr"
+	INCLUDE "src/soundData.asm"
