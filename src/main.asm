@@ -149,6 +149,7 @@ Start:
 	call InitFinalize
 	call InitJoypad
 	call InitSound
+	call UpdateJoypad
 
 Loop:
 	call UpdateJoypad

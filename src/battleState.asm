@@ -9,36 +9,27 @@ InitBattle
     ld [hl], 10
 
     call DrawBackground
-    call InitMenu
+    call InitText
 
     ret
 
-InitMenu:
-    ; zero out entity data
-    ld hl, wEntityStates
-    ld de, wEntityStatesEnd - wEntityStates
-contInitMenu:
-    ld [hl], 0
-    inc hl
-    dec de
-    ld a, e
-    and a
-    jr nz, contInitMenu
-
-    ; init battle variables
+InitText:
     ld hl, wBattleStateCounter
     ld [hl], 0
 
     ld hl, wBattleState
     ld [hl], 0
 
-    ld hl, wMenuSelection
+    ; zero out entity data
+    ld hl, wEntityStates
+    ld de, wEntityStatesEnd - wEntityStates
+contZero
     ld [hl], 0
-
-    ; TODO: these should probably be changed with the menu rendering rewrite
-    call DrawFightSelect
-    call DrawItem
-    call DrawMercy
+    inc hl
+    dec de
+    ld a, e
+    and a
+    jr nz, contZero
 
     ret
 
@@ -104,7 +95,7 @@ UpdateBattleState:
     ld a, [wBattleState]
     ; TODO: use wBattleState to choose correct battle state handler
     cp 0
-    call z, UpdateMenu
+    call z, UpdateText
     cp 1
     call z, UpdateAttack1
     cp 2
@@ -112,65 +103,6 @@ UpdateBattleState:
 
     ld hl, wBattleStateCounter
     inc [hl]
-    ret
-
-UpdateMenu:
-    ; get selection
-    ld de, wMenuSelection
-    ld a, [de]
-
-    ; change selection
-    ld hl, wJoypadDirPress
-    bit 1, [hl]
-    jr nz, noLeft
-
-    call DrawMenu
-
-    dec a
-    cp -1
-    jr nz, noWrapLeft
-    ld a, 2
-noWrapLeft:
-
-    call DrawMenuSelect
-noLeft:
-
-    ld hl, wJoypadDirPress
-    bit 0, [hl]
-    jr nz, noRight
-
-    call DrawMenu
-
-    inc a
-    cp 3
-    jr c, noWrapRight
-    ld a, 0
-noWrapRight:
-
-    call DrawMenuSelect
-noRight:
-
-    ; set selection
-    ld [de], a
-
-    ; make selection
-    ld hl, $FF00
-    set 4, [hl]
-    res 5, [hl]
-    bit 0, [hl]
-    ret nz
-
-    ld a, [wMenuSelection]
-    cp 0
-    call z, InitFight
-    cp 1
-    call z, InitItem
-    cp 2
-    call z, InitSpare
-
-    ; TODO: Call random init attack
-    call InitAttack1
-
     ret
 
 InitFight:
@@ -195,15 +127,25 @@ InitSpare:
 
     ret
 
+UpdateText:
+    ld hl, wJoypadButPress
+    bit 0, [hl]
+    call z, InitAttack1
+
+    ; todo: wobble character sprites
+
+    ret
+
 UpdateAttack1:
     ; TODO: draw all fireballs
 
     ; TODO: add some more fireballs at certain points in the counter
-    ; TODO: after x ticks call InitMenu
+
+    ; end
     ld hl, wBattleStateCounter
     ld a, l
     cp 10
-    call z, InitMenu
+    call z, InitText
 
     ret
 

@@ -1,5 +1,5 @@
 UpdateJoypad:
-
+    ; ------ direction logic
     ld hl, $FF00
 
     ; get new hold
@@ -12,13 +12,33 @@ UpdateJoypad:
     ld a, [hl]
 
     ; set new hold
-    ld hl, wJoypadDirHold
     ld [hl], b
 
     ; set new press
     cpl
     or b
-    inc hl ; set to wJoypadDirPress
+    inc hl ; ld hl, wJoypadDirPress
+    ld [hl], a
+
+    ; ------ button logic
+    ld hl, $FF00
+
+    ; get new hold
+    set 4, [hl]
+    res 5, [hl]
+    ld b, [hl]
+
+    ; get previous hold
+    ld hl, wJoypadButHold
+    ld a, [hl]
+
+    ; set new hold
+    ld [hl], b
+
+    ; set new press
+    cpl
+    or b
+    inc hl ; ld hl, wJoypadButPress
     ld [hl], a
 
     ret

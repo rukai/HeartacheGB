@@ -34,7 +34,7 @@ InitPlayer:
 
 UpdatePlayer:
     ; set joypad to dir
-    ld hl, $FF00
+    ld hl, wJoypadDirHold
     res 4, [hl]
 
     ; move player

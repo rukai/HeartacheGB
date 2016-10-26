@@ -11,11 +11,13 @@ wTorielHealth  EQU $C005
 
 ; joypad
 wJoypadDirHold   EQU $C010
-wJoypadDirPress  EQU $C011
+wJoypadDirPress  EQU $C011 ; assumed comes after wJoypadDirHold
+wJoypadButHold   EQU $C012
+wJoypadButPress  EQU $C013 ; assumed comes after wJoypadButHold
 
 ; music
-wMusicChan2      EQU $C012
-wMusicChan2Delay EQU $C013
+wMusicChan2      EQU $C020
+wMusicChan2Delay EQU $C021
 
 ; 0 - menu
 ; 1 - attack one
