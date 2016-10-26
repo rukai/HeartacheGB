@@ -12,7 +12,6 @@
 	; system includes
 	INCLUDE	"lib/hardware.inc"
 	INCLUDE "src/constants.asm"
-	INCLUDE "text/textPointers.asm"
 	
 ;*****************************************
 ;*	user data (constants)
@@ -182,5 +181,4 @@ GraphicsBinary:
 	INCBIN  "graphics/tiles.chr"
 	INCBIN  "graphics/toriel.chr"
 	INCLUDE "src/soundData.asm"
-Text:
-	INCBIN "text/text.out"
+	INCLUDE "text/text.asm"
