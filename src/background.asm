@@ -1,10 +1,9 @@
 DrawBackground:
-	; set background tile indexes
-    ; TODO: Both the blanking code and the toriel code is missing tiles leaving 0 tiles everywhere o.0
+	; set both tile maps to an empty tile
 	ld hl, $9800
-	ld de, $400
+	ld de, $800
 repeatTile:
-	ld [hl], TorielL0 ; BGB sees this called but it has no effect o.0
+	ld [hl], TorielL0
 	inc hl
 	dec de
 	ld a, d

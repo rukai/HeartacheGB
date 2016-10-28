@@ -47,4 +47,14 @@ InitJoypad:
 
     ld hl, wJoypadDirHold
     ld [hl], 0
+
+    ld hl, wJoypadDirPress
+    ld [hl], 0
+
+    ld hl, wJoypadButHold
+    ld [hl], 0
+
+    ld hl, wJoypadButPress
+    ld [hl], 0
+
     ret

@@ -8,12 +8,15 @@ InitBattle
     ld hl, wPlayerHealth
     ld [hl], 10
 
+    ld hl, wTextType
+    ld [hl], 0
+
     call DrawBackground
-    call InitText
+    call InitMessage
 
     ret
 
-InitText:
+InitMessage:
     ld hl, wBattleStateCounter
     ld [hl], 0
 
@@ -30,6 +33,8 @@ contZero
     ld a, e
     and a
     jr nz, contZero
+
+    call InitTextBox
 
     ret
 
@@ -93,9 +98,8 @@ UpdateBattleState:
     call UpdateEntities
 
     ld a, [wBattleState]
-    ; TODO: use wBattleState to choose correct battle state handler
     cp 0
-    call z, UpdateText
+    call z, UpdateMessage
     cp 1
     call z, UpdateAttack1
     cp 2
@@ -127,12 +131,12 @@ InitSpare:
 
     ret
 
-UpdateText:
+UpdateMessage:
     ld hl, wJoypadButPress
     bit 0, [hl]
     call z, InitAttack1
-
-    ; todo: wobble character sprites
+    
+    call UpdateTextBox
 
     ret
 
@@ -145,7 +149,7 @@ UpdateAttack1:
     ld hl, wBattleStateCounter
     ld a, l
     cp 10
-    call z, InitText
+    call z, InitMessage
 
     ret
 

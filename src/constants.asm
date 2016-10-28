@@ -8,6 +8,16 @@ wBattleStateCounter EQU $C002 ; number of ticks current wBattleState has run for
 wBattleStage   EQU $C003 ; progress in the battle
 wPlayerHealth  EQU $C004
 wTorielHealth  EQU $C005
+wTextType      EQU $C006
+; 0 - encounter
+; 1 - flavor
+; 2 - spare
+; 3 - *
+; 4 - *
+wTextStringHi     EQU $C007
+wTextStringLo     EQU $C008
+wTextStringNextHi EQU $C009 ; Or Prev ...
+wTextStringNextLo EQU $C00A
 
 ; joypad
 wJoypadDirHold   EQU $C010
@@ -73,18 +83,15 @@ wSprite19     EQU wOAMBuffer+76
 
 ; Spritesheet tile lines
 SL0   EQU 0
-SL1   EQU SL0+8
-SL2   EQU SL0+16
-SL3   EQU SL0+24
-SL4   EQU SL0+32
-SL5   EQU SL0+40
-SL6   EQU SL0+48
-SL7   EQU SL0+56
-SL8   EQU SL0+64
-SLEnd EQU SL0+72
+SL1   EQU SL0+4
+SLEnd EQU SL0+8
+
+Alphabet    EQU SLEnd
+Alphabet2   EQU SLEnd+35
+AlphabetEnd EQU SLEnd+70
 
 ; Toriel tile lines
-TorielL0  EQU SLEnd
+TorielL0  EQU AlphabetEnd
 TorielL1  EQU TorielL0+9
 TorielL2  EQU TorielL0+18
 TorielL3  EQU TorielL0+27
@@ -117,3 +124,22 @@ BackgroundL13 EQU BackgroundL0+416
 BackgroundL14 EQU BackgroundL0+448
 BackgroundL15 EQU BackgroundL0+480
 BackgroundL16 EQU BackgroundL0+512
+
+; Window map lines
+WindowL0  EQU $9C00
+WindowL1  EQU WindowL0+32
+WindowL2  EQU WindowL0+64
+WindowL3  EQU WindowL0+96
+WindowL4  EQU WindowL0+128
+WindowL5  EQU WindowL0+160
+WindowL6  EQU WindowL0+192
+WindowL7  EQU WindowL0+224
+WindowL8  EQU WindowL0+256
+WindowL9  EQU WindowL0+288
+WindowL10 EQU WindowL0+320
+WindowL11 EQU WindowL0+352
+WindowL12 EQU WindowL0+384
+WindowL13 EQU WindowL0+416
+WindowL14 EQU WindowL0+448
+WindowL15 EQU WindowL0+480
+WindowL16 EQU WindowL0+512

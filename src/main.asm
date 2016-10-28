@@ -144,10 +144,10 @@ JOYPAD_VECT:
 Start:
 	call WriteDMACodeToHRAM
 	call Init
+	call InitJoypad
 	call InitFireballs
 	call InitBattle
 	call InitFinalize
-	call InitJoypad
 	call InitSound
 	call UpdateJoypad
 
@@ -173,12 +173,14 @@ Loop:
 	INCLUDE "src/battleState.asm"
 	INCLUDE "src/joypad.asm"
 	INCLUDE "src/sound.asm"
+	INCLUDE "src/text.asm"
 
 	SECTION "BANK1",ROMX,BANK[$1]
 SinTable:
 	INCBIN  "bin/sinTable.bin";
 GraphicsBinary:
 	INCBIN  "graphics/tiles.chr"
+	INCBIN  "graphics/tiles2.chr"
 	INCBIN  "graphics/toriel.chr"
 	INCLUDE "src/soundData.asm"
-	INCLUDE "text/text.asm"
+	INCLUDE "strings/strings.asm"
