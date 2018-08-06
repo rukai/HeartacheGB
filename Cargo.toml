@@ -1,0 +1,11 @@
+cargo-features = ["edition"]
+
+[package]
+name = "heartache"
+version = "0.1.0"
+authors = ["Rukai <rubickent@gmail.com>"]
+edition = '2018'
+
+[dependencies]
+ggbasm = "0.1"
+failure = "0.1"

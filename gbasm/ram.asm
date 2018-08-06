@@ -1,51 +1,51 @@
 ; functions
-DMARoutineHRAM EQU $FF80
+DMARoutineHRAM EQU 0xFF80
 
 ; variables
-wMenuSelection EQU $C000 ; 0 - 2
-wBattleState   EQU $C001 ; attack, menu, item etc
-wBattleStateCounter EQU $C002 ; number of ticks current wBattleState has run for
-wBattleStage   EQU $C003 ; progress in the battle
-wPlayerHealth  EQU $C004
-wTorielHealth  EQU $C005
-wTextType      EQU $C006
+wMenuSelection EQU 0xC000 ; 0 - 2
+wBattleState   EQU 0xC001 ; attack, menu, item etc
+wBattleStateCounter EQU 0xC002 ; number of ticks current wBattleState has run for
+wBattleStage   EQU 0xC003 ; progress in the battle
+wPlayerHealth  EQU 0xC004
+wTorielHealth  EQU 0xC005
+wTextType      EQU 0xC006
 ; 0 - encounter
 ; 1 - flavor
 ; 2 - spare
 ; 3 - *
 ; 4 - *
-wTextStringHi     EQU $C007
-wTextStringLo     EQU $C008
-wTextStringNextHi EQU $C009 ; Or Prev ...
-wTextStringNextLo EQU $C00A
+wTextStringHi     EQU 0xC007
+wTextStringLo     EQU 0xC008
+wTextStringNextHi EQU 0xC009 ; Or Prev ...
+wTextStringNextLo EQU 0xC00A
 
 ; joypad
-wJoypadDirHold   EQU $C010
-wJoypadDirPress  EQU $C011 ; assumed comes after wJoypadDirHold
-wJoypadButHold   EQU $C012
-wJoypadButPress  EQU $C013 ; assumed comes after wJoypadButHold
+wJoypadDirHold   EQU 0xC010
+wJoypadDirPress  EQU 0xC011 ; assumed comes after wJoypadDirHold
+wJoypadButHold   EQU 0xC012
+wJoypadButPress  EQU 0xC013 ; assumed comes after wJoypadButHold
 
 ; music
-wMusicChan2      EQU $C020
-wMusicChan2Delay EQU $C021
+wMusicChan2      EQU 0xC020
+wMusicChan2Delay EQU 0xC021
 
 ; 0 - menu
 ; 1 - attack one
 ; 2 - attack two
 ; ...
-wEntityStatesMSB EQU $C1
-wEntityStates    EQU $C100
-wEntityStatesEnd EQU $C1A0
-wEntity0         EQU $C100
-wEntity1         EQU $C110
-wEntity2         EQU $C120
-wEntity3         EQU $C130
-wEntity4         EQU $C140
-wEntity5         EQU $C150
-wEntity6         EQU $C160
-wEntity7         EQU $C170
-wEntity8         EQU $C180
-wEntity9         EQU $C190
+wEntityStatesMSB EQU 0xC1
+wEntityStates    EQU 0xC100
+wEntityStatesEnd EQU 0xC1A0
+wEntity0         EQU 0xC100
+wEntity1         EQU 0xC110
+wEntity2         EQU 0xC120
+wEntity3         EQU 0xC130
+wEntity4         EQU 0xC140
+wEntity5         EQU 0xC150
+wEntity6         EQU 0xC160
+wEntity7         EQU 0xC170
+wEntity8         EQU 0xC180
+wEntity9         EQU 0xC190
 ; can hold up to 10 entities
 ; each entity is 16 bytes:
 ; * x
@@ -58,8 +58,8 @@ wEntity9         EQU $C190
 ; * 12 bytes of padding to keep inline with OAM
 
 ; OAM
-wOAMBufferMSB EQU $CF
-wOAMBuffer    EQU $CF00
+wOAMBufferMSB EQU 0xCF
+wOAMBuffer    EQU 0xCF00
 wSprite0      EQU wOAMBuffer
 wSprite1      EQU wOAMBuffer+4
 wSprite2      EQU wOAMBuffer+8
@@ -107,7 +107,7 @@ TorielL12 EQU TorielL0+108
 TorielL13 EQU TorielL0+117
 
 ; Background map lines
-BackgroundL0  EQU $9800
+BackgroundL0  EQU 0x9800
 BackgroundL1  EQU BackgroundL0+32
 BackgroundL2  EQU BackgroundL0+64
 BackgroundL3  EQU BackgroundL0+96
@@ -126,7 +126,7 @@ BackgroundL15 EQU BackgroundL0+480
 BackgroundL16 EQU BackgroundL0+512
 
 ; Window map lines
-WindowL0  EQU $9C00
+WindowL0  EQU 0x9C00
 WindowL1  EQU WindowL0+32
 WindowL2  EQU WindowL0+64
 WindowL3  EQU WindowL0+96
