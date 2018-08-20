@@ -28,7 +28,7 @@ Sound:
     ret
 
 playChan2:
-    ld d Channel2Table / 0xFF
+    ld d Channel2TableStart / 0xFF
     ; load table progress
     ld hl wMusicChan2
     ld e [hl]
@@ -62,7 +62,7 @@ playChan2:
 
     ; loop song early
     ld a e
-    cp 0x30
+    cp Channel2TableEnd - Channel2TableStart
     jp nz saveProgress
     ld e 0
 

@@ -7,5 +7,5 @@ authors = ["Rukai <rubickent@gmail.com>"]
 edition = '2018'
 
 [dependencies]
-ggbasm = "0.1"
+ggbasm = { path = "/home/rubic/Projects/Crates/ggbasm/ggbasm" }
 failure = "0.1"
