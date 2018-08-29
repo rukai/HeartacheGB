@@ -5,7 +5,7 @@ wait:
 	ld a [0xFF00+0x44]
 	cp 0x90
 	jr nz wait
-	xor a
+	xor a ; cp 0
 	ld [0xFF00+0x40] a
 
 	; load sprites into first tile pattern table in vram
@@ -19,10 +19,10 @@ loadGraphics:
 	inc hl
 	dec bc
 	ld a c
-	and a
+	and a ; cp 0
 	jp nz loadGraphics
 	ld a b
-	and a
+	and a ; cp 0
 	jp nz loadGraphics
 
 	; background and sprite palettes
@@ -46,7 +46,7 @@ loadGraphics:
 
 InitFinalize:
 	; enable display with sprites background and window
-	ld a 0xF3; 0b11110011
+	ld a 0xF3 ; 0b11110011
 	ld [0xFF00+0x40] a
 
 	; setup interrupts

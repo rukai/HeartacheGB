@@ -1,10 +1,10 @@
 InitTextBox:
     ; load current stage string into wTextString
     ld hl wTextStringHi
-    ld [hl] TextEncounter0 / 0xFF
+    ld [hl] TextEncounter0 / 0x100
 
     ld hl wTextStringLo
-    ld [hl] TextEncounter0 & 0xFF
+    ld [hl] TextEncounter0 % 0x100
 
     ret
 

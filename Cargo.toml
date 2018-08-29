@@ -7,5 +7,5 @@ authors = ["Rukai <rubickent@gmail.com>"]
 edition = '2018'
 
 [dependencies]
-ggbasm = { path = "/home/rubic/Projects/Crates/ggbasm/ggbasm" }
+ggbasm = { git = "https://github.com/rukai/ggbasm" }
 failure = "0.1"

@@ -11,6 +11,19 @@ InitBattle:
     ld hl wTextType
     ld [hl] 0
 
+    ; play heartache music
+    ; TODO: Use `ldi [hl] 0xXX`
+    ld hl wMusicEnable
+    ld [hl] 0x01
+    ld hl wMusicBank
+    ld [hl] 0x00
+    ld hl wMusicPointerHi
+    ld [hl] MusicHeartacheStart / 0x100
+    ld hl wMusicPointerLo
+    ld [hl] MusicHeartacheStart % 0x100
+    ld hl wMusicRest
+    ld [hl] 0x20
+
     call DrawBackground
     call InitMessage
 
@@ -31,7 +44,7 @@ contZero:
     inc hl
     dec de
     ld a e
-    and a
+    and a ; cp 0
     jr nz contZero
 
     call InitTextBox

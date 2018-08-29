@@ -1,11 +1,11 @@
 Start:
     call WriteDMACodeToHRAM
     call Init
+    call InitSound
     call InitJoypad
     call InitFireballs
     call InitBattle
     call InitFinalize
-    call InitSound
     call UpdateJoypad
 
 Loop:

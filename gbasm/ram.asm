@@ -26,8 +26,11 @@ wJoypadButHold   EQU 0xC012
 wJoypadButPress  EQU 0xC013 ; assumed comes after wJoypadButHold
 
 ; music
-wMusicChan2      EQU 0xC020
-wMusicChan2Delay EQU 0xC021
+wMusicEnable    EQU 0xC020 ; dont process music when 0
+wMusicBank      EQU 0xC021 ; the bank the currently playing song is stored on
+wMusicPointerHi EQU 0xC022 ; pointer to the currently playing song
+wMusicPointerLo EQU 0xC023
+wMusicRest      EQU 0xC024 ; rest for this many steps
 
 ; 0 - menu
 ; 1 - attack one
