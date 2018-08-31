@@ -125,7 +125,7 @@ dependencies = [
 [[package]]
 name = "ggbasm"
 version = "0.1.3"
-source = "git+https://github.com/rukai/ggbasm#08d570670612bee0e5f78c04676a2d9196490762"
+source = "git+https://github.com/rukai/ggbasm#6858a5860aa4b5870992eb862b705f415dcfbdaa"
 dependencies = [
  "byteorder 1.2.6 (registry+https://github.com/rust-lang/crates.io-index)",
  "failure 0.1.2 (registry+https://github.com/rust-lang/crates.io-index)",

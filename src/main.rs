@@ -50,8 +50,8 @@ fn run() -> Result<(), Error> {
         .add_image("tiles2.png", "GraphicsTiles2", &colors)?
         .add_image("toriel.png", "GraphicsToriel", &colors)?
         .advance_address(1, 0x1000)?
-        .add_audio_file("heartache.txt")?
         .add_instructions(text::generate_text())?
+        .add_audio_file("heartache.txt")?
         .add_asm_file("ram.asm")?
         //.print_variables_by_identifier()?
         .write_to_disk("heartache.gb")?;

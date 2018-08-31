@@ -1,7 +1,7 @@
 Start:
     call WriteDMACodeToHRAM
     call Init
-    call InitSound
+    call GGBASMAudioInit
     call InitJoypad
     call InitFireballs
     call InitBattle
@@ -11,7 +11,7 @@ Start:
 Loop:
     call UpdateJoypad
     call UpdateBattleState
-    call StepSound
+    call GGBASMAudioStep
 
     halt
 
