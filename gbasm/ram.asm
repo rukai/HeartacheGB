@@ -26,11 +26,11 @@ wJoypadButHold   EQU 0xC012
 wJoypadButPress  EQU 0xC013 ; assumed comes after wJoypadButHold
 
 ; music
-wMusicEnable    EQU 0xC020 ; dont process music when 0
-wMusicBank      EQU 0xC021 ; the bank the currently playing song is stored on
-wMusicPointerHi EQU 0xC022 ; pointer to the currently playing song
-wMusicPointerLo EQU 0xC023
-wMusicRest      EQU 0xC024 ; rest for this many steps
+GGBASMMusicEnable    EQU 0xC020 ; dont process music when 0
+GGBASMMusicBank      EQU 0xC021 ; the bank the currently playing song is stored on
+GGBASMMusicPointerHi EQU 0xC022 ; pointer to the currently playing song
+GGBASMMusicPointerLo EQU 0xC023
+GGBASMMusicRest      EQU 0xC024 ; rest for this many steps
 
 ; 0 - menu
 ; 1 - attack one

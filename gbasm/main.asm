@@ -11,7 +11,7 @@ Start:
 Loop:
     call UpdateJoypad
     call UpdateBattleState
-    call Sound
+    call StepSound
 
     halt
 

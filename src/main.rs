@@ -42,15 +42,15 @@ fn run() -> Result<(), Error> {
         .add_asm_file("fireball.asm")?
         .add_asm_file("battleState.asm")?
         .add_asm_file("joypad.asm")?
-        .add_asm_file("sound.asm")?
         .add_asm_file("text.asm")?
+        .add_audio_player()?
         .advance_address(1, 0)?
         .add_bytes(tables::generate_sin(), "SinTable")?
         .add_image("tiles.png", "GraphicsBinary", &colors)?
         .add_image("tiles2.png", "GraphicsTiles2", &colors)?
         .add_image("toriel.png", "GraphicsToriel", &colors)?
         .advance_address(1, 0x1000)?
-        .add_audio("heartache.txt", "MusicHeartache", AudioFinishAction::Loop)?
+        .add_audio_data("heartache.txt", "MusicHeartache", AudioFinishAction::Loop)?
         .add_instructions(text::generate_text())?
         .add_asm_file("ram.asm")?
         //.print_variables_by_identifier()?
