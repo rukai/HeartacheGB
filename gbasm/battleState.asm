@@ -13,15 +13,15 @@ InitBattle:
 
     ; play heartache music
     ; TODO: Use `ldi [hl] 0xXX`
-    ld hl GGBASMMusicEnable
+    ld hl GGBASMAudioEnable
     ld [hl] 0x01
-    ld hl GGBASMMusicBank
+    ld hl GGBASMAudioBank
     ld [hl] 0x00
-    ld hl GGBASMMusicPointerHi
-    ld [hl] MusicHeartacheStart / 0x100
-    ld hl GGBASMMusicPointerLo
-    ld [hl] MusicHeartacheStart % 0x100
-    ld hl GGBASMMusicRest
+    ld hl GGBASMAudioPointerHi
+    ld [hl] MusicHeartache / 0x100
+    ld hl GGBASMAudioPointerLo
+    ld [hl] MusicHeartache % 0x100
+    ld hl GGBASMAudioRest
     ld [hl] 0x20
 
     call DrawBackground

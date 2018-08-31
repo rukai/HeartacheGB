@@ -1,8 +1,8 @@
 use std::collections::HashMap;
 
 use failure::Error;
-use ggbasm::{RomBuilder, Color, AudioFinishAction};
 use ggbasm::header::{Header, ColorSupport, CartridgeType, RamType};
+use ggbasm::{RomBuilder, Color};
 
 mod tables;
 mod text;
@@ -50,7 +50,7 @@ fn run() -> Result<(), Error> {
         .add_image("tiles2.png", "GraphicsTiles2", &colors)?
         .add_image("toriel.png", "GraphicsToriel", &colors)?
         .advance_address(1, 0x1000)?
-        .add_audio_data("heartache.txt", "MusicHeartache", AudioFinishAction::Loop)?
+        .add_audio_file("heartache.txt")?
         .add_instructions(text::generate_text())?
         .add_asm_file("ram.asm")?
         //.print_variables_by_identifier()?

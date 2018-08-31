@@ -14,7 +14,7 @@ wTextType      EQU 0xC006
 ; 2 - spare
 ; 3 - *
 ; 4 - *
-wTextStringHi     EQU 0xC007
+wTextStringHi     EQU 0xC007 ; TODO: Make the endian consistent
 wTextStringLo     EQU 0xC008
 wTextStringNextHi EQU 0xC009 ; Or Prev ...
 wTextStringNextLo EQU 0xC00A
@@ -26,11 +26,11 @@ wJoypadButHold   EQU 0xC012
 wJoypadButPress  EQU 0xC013 ; assumed comes after wJoypadButHold
 
 ; music
-GGBASMMusicEnable    EQU 0xC020 ; dont process music when 0
-GGBASMMusicBank      EQU 0xC021 ; the bank the currently playing song is stored on
-GGBASMMusicPointerHi EQU 0xC022 ; pointer to the currently playing song
-GGBASMMusicPointerLo EQU 0xC023
-GGBASMMusicRest      EQU 0xC024 ; rest for this many steps
+GGBASMAudioEnable    EQU 0xC020 ; dont process music when 0
+GGBASMAudioBank      EQU 0xC021 ; the bank the currently playing song is stored on
+GGBASMAudioPointerLo EQU 0xC022
+GGBASMAudioPointerHi EQU 0xC023 ; pointer to the currently playing song
+GGBASMAudioRest      EQU 0xC024 ; rest for this many steps
 
 ; 0 - menu
 ; 1 - attack one

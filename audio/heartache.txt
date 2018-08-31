@@ -1,3 +1,4 @@
+label MusicHeartache
 a3:0:22:F:0N:YY
 c4:0:22:F:0N:YY
 C4:0:22:F:0N:YY
@@ -13,3 +14,4 @@ g4:0:22:F:0N:YY
 F4:0:22:F:0N:YY
 
 a3:0:22:F:0N:NN
+playfrom MusicHeartache
