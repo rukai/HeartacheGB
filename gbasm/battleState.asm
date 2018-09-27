@@ -1,28 +1,28 @@
 InitBattle:
-    ld hl wBattleStage
-    ld [hl] 10
+    ld hl, wBattleStage
+    ld [hl], 10
 
-    ld hl wTorielHealth
-    ld [hl] 10
+    ld hl, wTorielHealth
+    ld [hl], 10
 
-    ld hl wPlayerHealth
-    ld [hl] 10
+    ld hl, wPlayerHealth
+    ld [hl], 10
 
-    ld hl wTextType
-    ld [hl] 0
+    ld hl, wTextType
+    ld [hl], 0
 
     ; play heartache music
     ; TODO: Use `ldi [hl] 0xXX`
-    ld hl GGBASMAudioEnable
-    ld [hl] 0x01
-    ld hl GGBASMAudioBank
-    ld [hl] 0x00
-    ld hl GGBASMAudioPointerHi
-    ld [hl] MusicHeartache / 0x100
-    ld hl GGBASMAudioPointerLo
-    ld [hl] MusicHeartache % 0x100
-    ld hl GGBASMAudioRest
-    ld [hl] 0x20
+    ld hl, GGBASMAudioEnable
+    ld [hl], 0x01
+    ld hl, GGBASMAudioBank
+    ld [hl], 0x00
+    ld hl, GGBASMAudioPointerHi
+    ld [hl], MusicHeartache / 0x100
+    ld hl, GGBASMAudioPointerLo
+    ld [hl], MusicHeartache % 0x100
+    ld hl, GGBASMAudioRest
+    ld [hl], 0x20
 
     call DrawBackground
     call InitMessage
@@ -30,124 +30,124 @@ InitBattle:
     ret
 
 InitMessage:
-    ld hl wBattleStateCounter
-    ld [hl] 0
+    ld hl, wBattleStateCounter
+    ld [hl], 0
 
-    ld hl wBattleState
-    ld [hl] 0
+    ld hl, wBattleState
+    ld [hl], 0
 
     ; zero out entity data
-    ld hl wEntityStates
-    ld de wEntityStatesEnd - wEntityStates
+    ld hl, wEntityStates
+    ld de, wEntityStatesEnd - wEntityStates
 contZero:
-    ld [hl] 0
+    ld [hl], 0
     inc hl
     dec de
-    ld a e
+    ld a, e
     and a ; cp 0
-    jr nz contZero
+    jr nz, contZero
 
     call InitTextBox
 
     ret
 
 InitAttack1:
-    ld hl wBattleStateCounter
-    ld [hl] 0
+    ld hl, wBattleStateCounter
+    ld [hl], 0
 
-    ld hl wBattleState
-    ld [hl] 1
+    ld hl, wBattleState
+    ld [hl], 1
 
     call InitPlayer
 
-    ld hl wEntity1
-    ld [hl] 80
+    ld hl, wEntity1
+    ld [hl], 80
     inc hl
-    ld [hl] 0
+    ld [hl], 0
     inc hl
-    ld [hl] 2
+    ld [hl], 2
     inc hl
-    ld [hl] 0
+    ld [hl], 0
 
-    ld hl wEntity2
-    ld [hl] 80
+    ld hl, wEntity2
+    ld [hl], 80
     inc hl
-    ld [hl] 30
+    ld [hl], 30
     inc hl
-    ld [hl] 2
+    ld [hl], 2
     inc hl
-    ld [hl] 32
+    ld [hl], 32
 
-    ld hl wEntity3
-    ld [hl] 80
+    ld hl, wEntity3
+    ld [hl], 80
     inc hl
-    ld [hl] 60
+    ld [hl], 60
     inc hl
-    ld [hl] 2
+    ld [hl], 2
     inc hl
-    ld [hl] 0
+    ld [hl], 0
 
-    ld hl wEntity4
-    ld [hl] 80
+    ld hl, wEntity4
+    ld [hl], 80
     inc hl
-    ld [hl] 90
+    ld [hl], 90
     inc hl
-    ld [hl] 2
+    ld [hl], 2
     inc hl
-    ld [hl] 32
+    ld [hl], 32
 
     ret
 
 InitAttack2:
-    ld hl wBattleState
-    ld [hl] 2
+    ld hl, wBattleState
+    ld [hl], 2
 
-    ld hl wBattleStateCounter
-    ld [hl] 0
+    ld hl, wBattleStateCounter
+    ld [hl], 0
 
     ret
 
 UpdateBattleState:
     call UpdateEntities
 
-    ld a [wBattleState]
+    ld a, [wBattleState]
     cp 0
-    call z UpdateMessage
+    call z, UpdateMessage
     cp 1
-    call z UpdateAttack1
+    call z, UpdateAttack1
     cp 2
-    call z UpdateAttack2
+    call z, UpdateAttack2
 
-    ld hl wBattleStateCounter
+    ld hl, wBattleStateCounter
     inc [hl]
     ret
 
 InitFight:
-    ld hl wTorielHealth
-    ld a [hl]
+    ld hl, wTorielHealth
+    ld a, [hl]
     sub 3
-    ld [hl] a
+    ld [hl], a
 
     ret
 
 InitItem:
     ret
-    ld hl wPlayerHealth
-    ld a [hl]
+    ld hl, wPlayerHealth
+    ld a, [hl]
     add 3
 
-    ld [hl] a
+    ld [hl], a
 
 InitSpare:
-    ld hl wBattleStage
+    ld hl, wBattleStage
     inc [hl]
 
     ret
 
 UpdateMessage:
-    ld hl wJoypadButPress
-    bit 0 [hl]
-    call z InitAttack1
+    ld hl, wJoypadButPress
+    bit 0, [hl]
+    call z, InitAttack1
     
     call UpdateTextBox
 
@@ -159,10 +159,10 @@ UpdateAttack1:
     ; TODO: add some more fireballs at certain points in the counter
 
     ; end
-    ld hl wBattleStateCounter
-    ld a l
+    ld hl, wBattleStateCounter
+    ld a, l
     cp 10
-    call z InitMessage
+    call z, InitMessage
 
     ret
 

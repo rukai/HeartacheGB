@@ -1,11 +1,9 @@
-cargo-features = ["edition"]
-
 [package]
 name = "heartache"
 version = "0.1.0"
 authors = ["Rukai <rubickent@gmail.com>"]
-edition = '2018'
+edition = "2018"
 
 [dependencies]
-ggbasm = { git = "https://github.com/rukai/ggbasm" }
+ggbasm = "0.2"
 failure = "0.1"

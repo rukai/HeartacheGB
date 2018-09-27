@@ -1,6 +1,6 @@
 use ggbasm::ast::Instruction;
 
-crate fn generate_text() -> Vec<Instruction> {
+pub fn generate_text() -> Vec<Instruction> {
     let mut instructions = vec!();
     add_text(&mut instructions, "Encounter0",  "Toriel blocks the way!");
     add_text(&mut instructions, "Flavor0",     "Toriel looks through you.");

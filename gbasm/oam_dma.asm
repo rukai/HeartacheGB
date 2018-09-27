@@ -4,26 +4,26 @@
 WriteDMACodeToHRAM:
 ; Since no other memory is available during OAM DMA
 ; DMARoutine is copied to HRAM and executed there.
-	ld c 0xFF80 % 0x100
-	ld b DMARoutineEnd - DMARoutine
-	ld hl DMARoutine
+	ld c, 0xFF80 % 0x100
+	ld b, DMARoutineEnd - DMARoutine
+	ld hl, DMARoutine
 DMACopy:
-	ldi a [hl]
-	ld [0xff00+c] a
+	ldi a, [hl]
+	ld [0xff00+c], a
 	inc c
 	dec b
-	jr nz DMACopy
+	jr nz, DMACopy
 	ret
 
 DMARoutine:
 	; initiate DMA
-	ld a wOAMBuffer / 0x100
-	ld [0xFF00 + 0x46] a
+	ld a, wOAMBuffer / 0x100
+	ld [0xFF00 + 0x46], a
 
 	; wait for DMA to finish
-	ld a 0x28
+	ld a, 0x28
 DMAWait:
 	dec a
-	jr nz DMAWait
+	jr nz, DMAWait
 	ret
 DMARoutineEnd:
