@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use failure::Error;
+use anyhow::Error;
 use ggbasm::header::{Header, ColorSupport, CartridgeType, RamType};
 use ggbasm::{RomBuilder, Color};
 

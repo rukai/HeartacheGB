@@ -5,5 +5,5 @@ authors = ["Rukai <rubickent@gmail.com>"]
 edition = "2018"
 
 [dependencies]
-ggbasm = "0.2"
-failure = "0.1"
+ggbasm = "0.3"
+anyhow = "1"
